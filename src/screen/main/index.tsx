@@ -1,13 +1,10 @@
-import { Container, Sidebar, SidebarBlock } from "./styled";
+import Login from "../login";
+import { Container } from "./styled";
 
 export default function Main () {
     return (
         <Container>
-            <Sidebar>
-                <SidebarBlock>
-                    
-                </SidebarBlock>
-            </Sidebar>
+            
         </Container>
     )
 }

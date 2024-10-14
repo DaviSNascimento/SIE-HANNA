@@ -1,6 +1,9 @@
-import { Container, ContainerForm, ContainerLogin, InputForm, Title } from "./styled";
+import { Button, Container, ContainerForm, ContainerLogin, InputForm, Labels, Title } from "./styled";
 
 export default function Login () {
+
+    
+
     return (
         <Container 
             backgroundColor="#999"
@@ -19,8 +22,16 @@ export default function Login () {
                 </Title>
 
                 <ContainerForm>
+                    <Labels fontSize={24} color="#000" fontFamily="Montserrat" fontWeight="500">Name</Labels>
+                    <InputForm type="text"/>
+                    <br/>
+                    <Labels fontSize={24} color="#000" fontFamily="Montserrat" fontWeight="500">Password</Labels>
                     <InputForm type="text"/>
                 </ContainerForm>
+
+                <Button>
+                    <Labels fontSize={24} color="#000" fontFamily="Montserrat" cursor="pointer">Enviar</Labels>
+                </Button>
 
             </ContainerLogin>
         </Container>

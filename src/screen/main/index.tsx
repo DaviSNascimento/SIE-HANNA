@@ -1,19 +1,23 @@
-<<<<<<< HEAD
-import { Container } from "./styled";
-
-=======
 import { Container, Header, Icon, Logo, Sidebar, SidebarBlock } from "./styled";
 import { useState } from 'react';
->>>>>>> 526c845f86201a708f53423f3c25b3041e06a980
-export default function Main () {
+import { GiSupersonicBullet } from "react-icons/gi";
+import { IoPersonOutline } from "react-icons/io5";
+
+//Fazer o yarn para puxar a bibliteca de icons "yarn"
+
+export default function Main() {
     const [user] = useState('Davi');
     return (
         <Container>
             <Sidebar>
                 <SidebarBlock>
-                    <Logo src="../../assets/Logo_Hanna_2.png" alt="Logo"/>
-                    <Icon>☰</Icon>
-                    <Icon>🔔</Icon>
+                    <Logo src="../../../public/Logo-Hanna.png" alt="Logo" />
+                    <Icon>
+                        <IoPersonOutline/>
+                    </Icon>
+                    <Icon>
+                        <GiSupersonicBullet />
+                    </Icon>
                     <Icon>⚙️</Icon>
                     <Icon>👤</Icon>
                 </SidebarBlock>
@@ -21,7 +25,6 @@ export default function Main () {
             <Header>
                 <h1>Olá {user}!</h1>
             </Header>
-
         </Container>
-    )
+    );
 }

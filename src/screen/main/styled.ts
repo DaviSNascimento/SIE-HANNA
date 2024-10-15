@@ -29,13 +29,11 @@ export const SidebarBlock = styled.div`
 export const Logo = styled.img`
     width: 150px;
     height: 150px;
-    background-color: black;
 `
 
 export const Icon = styled.div`
     width: 60px;
     height: 60px;
-    background-color: aqua;
     margin: 40px 0px 40px 0px;
 `
 export const Header = styled.div`

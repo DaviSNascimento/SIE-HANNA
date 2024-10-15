@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const Container = styled.div`
   background-color: #1F1F1F;
@@ -39,20 +39,21 @@ export const Container = styled.div`
 export const Sidebar = styled.div`
   grid-area: sidebar;
   background-color: #5D675B;
-  display: fixed;
-  width: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 15px;
+  width: 45px;
   margin: 0;
   height: 100vh;  /* Sidebar também ocupa a altura total da tela */
 
   @media (max-width: 768px) {
     width: 80px;
-    height: auto;
   }
 
   @media (max-width: 480px) {
-    height: auto;
     width: 100%;
-    display: flex;
+    height: auto;
     justify-content: center;
   }
 `;
@@ -61,30 +62,38 @@ export const SidebarBlock = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 350px;
-  align-items: center;
-  padding: 15px;
-
-  @media (max-width: 768px) {
-    gap: 150px;
-  }
-
-  @media (max-width: 480px) {
-    gap: 50px;
-    flex-direction: row;
-  }
+  height: 100%;
 `;
 
 export const ContainerSidebar = styled.div`
+  display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+`;
+
+export const TopContainerSidebar = styled(ContainerSidebar)`
+  justify-content: flex-start;
+`;
+
+export const BottomContainerSidebar = styled(ContainerSidebar)`
+  justify-content: flex-end;
+  margin-bottom: 10px;
+
+  @media (max-width: 480px) {
+    margin-bottom: 0;
+  }
+`;
+
+export const LogoContainer = styled.div`
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%; /* Isso permite que a linha se ajuste ao tamanho desejado */
 `;
 
 export const Logo = styled.img`
-  width: 150px;
-  height: 150px;
+  width: 100px;
+  height: 100px;
 
   @media (max-width: 768px) {
     width: 100px;
@@ -97,13 +106,29 @@ export const Logo = styled.img`
   }
 `;
 
+export const Line = styled.div`
+  width: 115%;
+  height: 1px;
+  background-color: #000;
+  margin-top: 10px; /* Espaçamento entre a logo e a linha */
+
+  @media (max-width: 768px) {
+    width: 60%;
+  }
+
+  @media (max-width: 480px) {
+    width: 50%;
+  }
+`;
+
 export const Icon = styled.div`
   display: flex;
   width: 60px;
   height: 60px;
-  margin: 10px 0px 10px 0px;
+  margin: 0;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 
   @media (max-width: 768px) {
     width: 40px;
@@ -155,3 +180,34 @@ export const Dashboard = styled.div`
     grid-gap: 10px;
   }
 `;
+
+interface IconProps {
+    isRotated: boolean;
+  }
+  
+  export const AnimatedIcon = styled.div<IconProps>`
+    display: flex;
+    width: 60px;
+    height: 60px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    
+  
+    ${(props) =>
+      props.isRotated &&
+      css`
+        transform: rotate(90deg);
+      `}
+  
+    @media (max-width: 768px) {
+      width: 40px;
+      height: 40px;
+    }
+  
+    @media (max-width: 480px) {
+      width: 30px;
+      height: 30px;
+    }
+  `;

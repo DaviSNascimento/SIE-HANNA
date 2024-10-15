@@ -17,14 +17,41 @@ export const Sidebar = styled.div`
     display: fixed;
     width: 200px;
     margin: 0;
-    /* height: 100vh; */
+    height: 100vh;
 `
 export const SidebarBlock = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-
-    border: 1px solid black;
     padding: 15px;
+`
+export const Logo = styled.img`
+    width: 150px;
+    height: 150px;
+    background-color: black;
+`
+
+export const Icon = styled.div`
+    width: 60px;
+    height: 60px;
+    background-color: aqua;
+    margin: 40px 0px 40px 0px;
+`
+export const Header = styled.div`
+    grid-area: header;
+    background-color: rgba(0, 128, 0, 0);
+    display: flex;
+    align-items: flex-end;
+    padding-left: 30px;
+    margin-top: 100px;
+`
+export const Dashboard = styled.div`
+    grid-area: dashboard;
+    background-color: rgba(0, 0, 255, 0);
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(6,1fr);
+    grid-gap: 20px;
 `

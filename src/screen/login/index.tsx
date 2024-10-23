@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { api } from "../../components/api/API";
 import { Button, Container, ContainerForm, ContainerLogin, Img, InputForm, Labels, Title, ForgotPassword } from "./styled";
+import { useNavigate } from "react-router-dom";
 
 export default function Login () {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const navigate = useNavigate()
 
     const SendUser = (email: string, password: string) => {
         api.post('/Login', {
@@ -16,13 +18,13 @@ export default function Login () {
             const result = response.data;
             const success = result.success;
             if(success) {
-                // Redirecionar para a página principal
-                alert('Login efetuado com sucesso!');
+                localStorage.setItem('authToken', result.token);
+                navigate('/main');
             } else {
                 alert('Falha no login. Verifique suas credenciais.');
             }
         }).catch((error) => {
-            alert('Erro ao conectar com a API. Tente novamente.');
+            alert('Senha ou usuario invalido');
         });
     };
 

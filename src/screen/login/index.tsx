@@ -23,6 +23,8 @@ export default function Login () {
             }
         }).catch((error) => {
             alert('Erro ao conectar com a API. Tente novamente.');
+            console.log(error.message);
+            
         });
     };
 

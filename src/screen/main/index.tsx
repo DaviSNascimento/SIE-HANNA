@@ -29,6 +29,7 @@ import {
 import Transacao from "../../components/transacao";
 import { useLocation } from "react-router-dom";
 import AssistenteAI from "../../components/AI";
+import { keywordActions } from "../../components/keywordActions/keywordActions";
 
 export default function Main() {
   const [isRotated, setIsRotated] = useState(false);
@@ -80,6 +81,16 @@ export default function Main() {
       }
     }
   }, [])
+
+  useEffect(() => {
+    if(transcript.trim() !== ' '){
+      keywordActions.forEach(({keyword, action}) => {
+        if(transcript.includes(keyword)){
+          action();
+        }
+      })
+    }
+  }, [transcript])
 
   function nome(nome:string){
     return 

@@ -24,7 +24,8 @@ export default function Login () {
                 alert('Falha no login. Verifique suas credenciais.');
             }
         }).catch((error) => {
-            alert('Senha ou usuario invalido');
+            alert('Erro ao conectar com a API. Tente novamente.');
+            console.log(error.message);
         });
     };
 

@@ -1,7 +1,7 @@
 import { FaBell } from "react-icons/fa";
 import { RiMenuFill } from "react-icons/ri";
 import { IoPersonOutline, IoSettingsSharp } from "react-icons/io5";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Container,
   TopContainerSidebar,
@@ -33,6 +33,66 @@ import AssistenteAI from "../../components/AI";
 export default function Main() {
   const [isRotated, setIsRotated] = useState(false);
 
+  const [transcript, setTranscript] = useState<string>('')
+  const [toggleOnOff, setToggleOnOff] = useState<boolean>(false)
+
+  let recognition: SpeechRecognition | null = null
+
+  useEffect(() => {
+    if('webkitSpeechRecognition' in window){
+      recognition =  new window.webkitSpeechRecognition()
+      recognition.lang = 'pt-BR'
+      recognition.continuous = true
+      recognition.interimResults = false
+  
+      recognition.onresult = (event: SpeechRecognitionEvent) => {
+        setTranscript('')
+        const current = event.results[event.results.length - 1][0].transcript
+        setTranscript((prev) => prev + ' ' + current)
+      }
+  
+      recognition.onstart = () => {
+        console.log('speech recognition started')
+      }
+  
+      recognition.onend = () => {
+        console.log('speech recognition ended');
+        setToggleOnOff(false)
+      }
+    }else{
+      console.log('Este navegador não suporta a web Speech API');
+    }
+
+    return () => {
+      if(recognition){
+        recognition.stop()
+      }
+    }
+
+  }, [])
+
+  useEffect(() => {
+    if(recognition){
+      if(toggleOnOff){
+        recognition.stop()
+      }else{
+        recognition.start()
+      }
+    }
+  }, [])
+
+  function nome(nome:string){
+    return 
+  }
+
+  const [number, setNumber] = useState(1);
+
+  useEffect(() => {
+
+  }, [])
+
+
+
   const location = useLocation();
   const user = location.state?.user || {};
 
@@ -51,7 +111,7 @@ export default function Main() {
               <Logo src="../../../public/LOGO(PNG).png" alt="Logo" />
               <Line />
             </LogoContainer>
-            <AnimatedIcon onClick={handleIconClick} isRotated={isRotated}>
+            <AnimatedIcon onClick={handleIconClick} isRotated={isRotated} >
               <RiMenuFill style={{ height: 20, width: 20 }} />
             </AnimatedIcon>
           </TopContainerSidebar>
